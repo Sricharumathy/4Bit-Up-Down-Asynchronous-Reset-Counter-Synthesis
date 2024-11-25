@@ -1,0 +1,16 @@
+read_libs /cadence/install/FOUNDRY/digital/90nm/dig/lib/slow.lib
+read_hdl counter.v
+elaborate
+read_sdc input_constraints.sdc 				
+syn_generic
+report_area
+syn_map
+report_area
+syn_opt 
+report_area						//Performing Synthesis Mapping and Optimisation
+report_timing > counter_timing.rep			//Generates Timing report for worst datapath and dumps into file
+report_area > counter_area.rep				//Generates Synthesis Area report and dumps into a file
+report_power > counter_power.rep			//Generates Power Report [Pre-Layout]
+write_hdl > counter_netlist.v 				//Creates readable Netlist File
+write_sdc > counter_output_constraints.sdc		//Creates Block Level SDC
+gui_show
